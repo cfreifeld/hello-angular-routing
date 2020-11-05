@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "hello-routing"
+    }
+  },
+  "defaultProject": "hello-routing",
+  "cli": {
+    "analytics": false
+  }
 }

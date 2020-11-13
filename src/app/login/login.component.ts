@@ -18,12 +18,14 @@ export class LoginComponent implements OnInit {
   }
 
   login(): void {
-    const user = this.userService.findUserByCredentials(this.username, this.password);
-    // handle non-existent user
-    if (user === undefined) {
-      alert('No such user/password');
-    } else {
-      this.router.navigate(['/profile', user._id]);
-    }
+    this.userService.findUserByCredentials(this.username, this.password)
+    .subscribe(user => {
+      // handle non-existent user
+      if (user === undefined) {
+        alert('No such user/password');
+      } else {
+        this.router.navigate(['/profile']);
+      }
+    });
   }
 }

@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {User} from '../models/user.model';
 import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
 
 // export interface User {
 //   _id: number;
@@ -20,29 +21,41 @@ export class UserService {
   }
 
   loadAllUsers(): void {
-    this.http.get('https://wbdv-generic-server.herokuapp.com/api/ccf/users').subscribe(
+    this.http.get('http://localhost:3000/api/users').subscribe(
       (data: User[]) => this.users = data
     );
   }
-  findUserById(userId: string): User {
-    // const userNumber = parseInt(userId, 10);
-    for (let i = 0; i < this.users.length; i++) {
-      const user = this.users[i];
-      if (userId === user._id) {
-        return user;
-      }
-    }
+  findUserById(userId: string): Observable<any> {
+    return this.http.get('http://localhost:3000/api/users/' + userId);
+    // // const userNumber = parseInt(userId, 10);
+    // for (let i = 0; i < this.users.length; i++) {
+    //   const user = this.users[i];
+    //   if (userId === user._id) {
+    //     return user;
+    //   }
+    // }
   }
 
 
-  findUserByCredentials(username: string, password: string): User {
-    for (let i = 0; i < this.users.length; i++) {
-      const user = this.users[i];
-      if (username === user.username &&
-        password === user.password) {
-        return user;
-      }
-    }
+  findUserByCredentials(username: string, password: string): Observable<any> {
+    return this.http.post('http://localhost:3000/api/login',
+      {username, password},
+      {withCredentials: true});
+    // for (let i = 0; i < this.users.length; i++) {
+    //   const user = this.users[i];
+    //   if (username === user.username &&
+    //     password === user.password) {
+    //     return user;
+    //   }
+    // }
   }
 
+  createUser(user: any): Observable<object> {
+    return this.http.post('http://localhost:3000/api/users', user);
+  }
+
+  findUserByLogin(): Observable<any> {
+    return this.http.get('http://localhost:3000/api/profile',
+      {withCredentials: true});
+  }
 }

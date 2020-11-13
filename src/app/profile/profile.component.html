@@ -1,8 +1,13 @@
 <h1>Profile</h1>
 <p>
-  {{user.firstName}}
-  {{user.lastName}}
+  {{user._id}}
+  {{user.username}}
 </p>
 <a routerLink="/user/{{user._id}}/website">
   Websites
 </a>
+<ul>
+  <li *ngFor="let ws of user.websites">
+    <app-website [site]="ws" (newWebSiteEvent)="removeItem($event)"></app-website>
+  </li>
+</ul>

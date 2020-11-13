@@ -10,13 +10,15 @@ import {routing} from './app.routing';
 import {FormsModule} from '@angular/forms';
 import {UserService} from './services/user.service.client';
 import {HttpClientModule} from '@angular/common/http';
+import { WebsiteComponent } from './website/website.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    ProfileComponent
+    ProfileComponent,
+    WebsiteComponent
   ],
   imports: [
     BrowserModule,

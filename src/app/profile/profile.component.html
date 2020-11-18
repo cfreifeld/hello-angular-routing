@@ -1,7 +1,8 @@
 <h1>Profile</h1>
 <p>
-  {{user._id}}
+  {{user._id | number}}
   {{user.username}}
+  created: {{user.createDate | date:'shortDate'}}
 </p>
 <a routerLink="/user/{{user._id}}/website">
   Websites

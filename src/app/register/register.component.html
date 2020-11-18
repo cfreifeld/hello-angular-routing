@@ -1,5 +1,11 @@
 <h1>Register</h1>
-Username <input [(ngModel)]="username"/><br/>
-Password <input [(ngModel)]="password"/><br/>
-Favorite Sites <input [(ngModel)]="faveSites"/><br/>
-<button (click)="register()">Register</button>
+
+
+<form method="post" id="myform" action="http://localhost:8080/api/users" enctype="multipart/form-data">
+Username <input name="username" [(ngModel)]="username"/><br/>
+Password <input name="password" [(ngModel)]="password"/><br/>
+Favorite Sites <input name="websites" [(ngModel)]="faveSites"/><br/>
+  <input type="file" name="myFile" class="form-control"/>
+<input type="submit" value="Register" />
+  <button type="submit" form="myform" value="Submit">Submit</button>
+</form>

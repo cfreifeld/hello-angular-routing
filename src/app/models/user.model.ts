@@ -2,6 +2,7 @@ export class User {
   _id: string;
   username: string;
   websites: string[];
+  createDate: Date;
   // password: string;
   // firstName: string;
   // lastName: string;

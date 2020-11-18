@@ -21,12 +21,12 @@ export class UserService {
   }
 
   loadAllUsers(): void {
-    this.http.get('http://localhost:3000/api/users').subscribe(
+    this.http.get('/api/users').subscribe(
       (data: User[]) => this.users = data
     );
   }
   findUserById(userId: string): Observable<any> {
-    return this.http.get('http://localhost:3000/api/users/' + userId);
+    return this.http.get('/api/users/' + userId);
     // // const userNumber = parseInt(userId, 10);
     // for (let i = 0; i < this.users.length; i++) {
     //   const user = this.users[i];
@@ -38,7 +38,7 @@ export class UserService {
 
 
   findUserByCredentials(username: string, password: string): Observable<any> {
-    return this.http.post('http://localhost:3000/api/login',
+    return this.http.post('/api/login',
       {username, password},
       {withCredentials: true});
     // for (let i = 0; i < this.users.length; i++) {
@@ -51,11 +51,11 @@ export class UserService {
   }
 
   createUser(user: any): Observable<object> {
-    return this.http.post('http://localhost:3000/api/users', user);
+    return this.http.post('/api/users', user);
   }
 
   findUserByLogin(): Observable<any> {
-    return this.http.get('http://localhost:3000/api/profile',
+    return this.http.get('/api/profile',
       {withCredentials: true});
   }
 }
